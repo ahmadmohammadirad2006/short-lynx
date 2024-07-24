@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-
+const { isURL } = require('validator');
 const urlSchema = new mongoose.Schema(
   {
     address: {
       type: String,
-      required: [true, 'A url must have an address'],
-      unique: true,
+      required: [true, 'A URL must have an address'],
+      validate: [isURL, 'This URL is invalid'],
     },
     createdAt: {
       type: Date,
