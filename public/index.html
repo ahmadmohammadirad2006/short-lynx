@@ -46,6 +46,8 @@
         <h3 class="text-5xl italic font-thin sm:text-7xl md:text-9xl text-gray">
           ShortURL
         </h3>
+
+        <!-- shortURL textarea group -->
         <div class="mb-auto flex rounded-xl bg-white">
           <textarea
             disabled
@@ -63,7 +65,18 @@
             <img src="/images/icon-copy.svg" alt="copy icon" />
           </button>
         </div>
-        <p class="text-2xl">
+        <!-- longURL placeholder-->
+        <div class="text-black break-words max-w-96 overflow-hidden">
+          Long URL:
+          <a
+            id="longUrlPlaceholder"
+            href=""
+            class="text-mainBlue"
+            target="_blank"
+          ></a>
+        </div>
+
+        <p class="text-1xl border-t pt-5 border-t-gray">
           Short-Lynx is a comprehensive, free service designed to transform
           lengthy URLs into concise, manageable links. This makes sharing your
           favorite websites, articles, and online resources simpler and more
@@ -86,8 +99,6 @@
     <div
       class="absolute top-28 left-1/2 -translate-x-1/2 p-4 hidden text-black rounded-xl"
       id="alert"
-    >
-      Copied!
-    </div>
+    ></div>
   </body>
 </html>

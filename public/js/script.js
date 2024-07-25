@@ -2,6 +2,7 @@
 const shortenUrlBtnEl = document.getElementById('shortenUrlBtn');
 const longUrlInputEl = document.getElementById('longUrlInput');
 const shortUrlTextareaEl = document.getElementById('shortUrlTextarea');
+const longUrlPlaceholderEl = document.getElementById('longUrlPlaceholder');
 const copysShortUrlBtnEl = document.getElementById('copysShortUrlBtn');
 const alertEl = document.getElementById('alert');
 
@@ -9,16 +10,22 @@ const alertEl = document.getElementById('alert');
 const hideElement = function (el) {
   el.classList.add('hidden');
 };
+let showAlertTimeout;
+const showAlert = function (type, message) {
+  clearTimeout(showAlertTimeout);
+  alertEl.textContent = '';
+  alertEl.classList.remove(`alert-success`);
+  alertEl.classList.remove(`alert-error`);
 
-const showAlert = function (type, message, durationMs) {
   alertEl.classList.remove('hidden');
+
   alertEl.classList.add(`alert-${type}`);
   alertEl.textContent = message;
-  setTimeout(function () {
-    hideElement(alertEl);
-  }, durationMs);
-};
 
+  showAlertTimeout = setTimeout(function () {
+    hideElement(alertEl);
+  }, 2000);
+};
 const clearInput = function (inp) {
   inp.value = '';
 };
@@ -26,6 +33,10 @@ const clearInput = function (inp) {
 // Click on shortUrl button
 shortenUrlBtnEl.addEventListener('click', async function (e) {
   try {
+    console.log(longUrlInputEl.textContent.trim().length);
+    if (longUrlInputEl.value.trim().length === 0)
+      throw new Error('URL cannot be empty. Please provide a URL.');
+    shortenUrlBtnEl.textContent = 'Processing...';
     const res = await axios({
       method: 'POST',
       url: '/api/v1/urls',
@@ -33,10 +44,16 @@ shortenUrlBtnEl.addEventListener('click', async function (e) {
         address: longUrlInputEl.value,
       },
     });
+    shortenUrlBtnEl.textContent = 'Shorten URL';
     clearInput(longUrlInputEl);
     shortUrlTextareaEl.value = res.data.data.newUrl.shortUrl;
+    longUrlPlaceholderEl.textContent = longUrlPlaceholderEl.href =
+      res.data.data.newUrl.address;
   } catch (err) {
-    showAlert('error', err.response.data.message, 1500);
+    shortenUrlBtnEl.textContent = 'Shorten URL';
+    if (err?.response?.data?.message)
+      showAlert('error', err.response.data.message, 1500);
+    else showAlert('error', err.message);
     console.log(err);
   }
 });
