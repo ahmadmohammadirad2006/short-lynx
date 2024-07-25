@@ -702,6 +702,14 @@ video {
   max-width: 2.25rem;
 }
 
+.max-w-8{
+  max-width: 2rem;
+}
+
+.max-w-56{
+  max-width: 14rem;
+}
+
 .flex-grow{
   flex-grow: 1;
 }
@@ -750,6 +758,10 @@ video {
 
 .gap-7{
   gap: 1.75rem;
+}
+
+.self-center{
+  align-self: center;
 }
 
 .overflow-auto{
@@ -884,6 +896,18 @@ video {
   line-height: 1.25rem;
 }
 
+.text-\[\.8rem\]{
+  font-size: .8rem;
+}
+
+.text-\[0\.8rem\]{
+  font-size: 0.8rem;
+}
+
+.text-\[0\.7rem\]{
+  font-size: 0.7rem;
+}
+
 .font-thin{
   font-weight: 100;
 }
@@ -910,6 +934,14 @@ video {
 .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-\[\]{
+  color: ;
+}
+
+.text-\[1\]{
+  color: 1;
 }
 
 .outline-none{
@@ -952,6 +984,10 @@ video {
     max-width: 100%;
   }
 
+  .sm\:max-w-96{
+    max-width: 24rem;
+  }
+
   .sm\:text-2xl{
     font-size: 1.5rem;
     line-height: 2rem;
@@ -961,9 +997,23 @@ video {
     font-size: 4.5rem;
     line-height: 1;
   }
+
+  .sm\:text-sm{
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .sm\:text-base{
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
 }
 
 @media (min-width: 768px){
+  .md\:max-w-96{
+    max-width: 24rem;
+  }
+
   .md\:gap-10{
     gap: 2.5rem;
   }
@@ -980,5 +1030,10 @@ video {
   .md\:text-9xl{
     font-size: 8rem;
     line-height: 1;
+  }
+
+  .md\:text-sm{
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 }

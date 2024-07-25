@@ -52,9 +52,9 @@ shortenUrlBtnEl.addEventListener('click', async function (e) {
   } catch (err) {
     shortenUrlBtnEl.textContent = 'Shorten URL';
     if (err?.response?.data?.message)
-      showAlert('error', err.response.data.message, 1500);
+      showAlert('error', err.response.data.message);
+    else if (err?.response?.data) showAlert('error', err.response.data);
     else showAlert('error', err.message);
-    console.log(err);
   }
 });
 
