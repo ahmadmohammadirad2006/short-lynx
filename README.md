@@ -12,6 +12,11 @@ You can try the live demo here: [Short-Lynx](https://short-lynx.liara.run/)
 - Displays the original URL.
 - Easy copy functionality for the shortened URL.
 
+## Technologies Used
+
+- Frontend: HTML, TailwindCSS, Pure JavaScript
+- Backend: Node.js, MongoDB
+
 ## Installation
 
 1. Clone the repository:
