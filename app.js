@@ -1,9 +1,10 @@
 const express = require('express');
 const { rateLimit } = require('express-rate-limit');
 const helmet = require('helmet');
+const compression = require('compression');
 const path = require('path');
-const app = express();
 
+const app = express();
 const Url = require('./models/urlModel');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -33,7 +34,7 @@ app.use(
   })
 );
 
-// Server static files in public
+// Serve static files in dist
 app.use(express.static('public'));
 
 // redirect shortened urls
@@ -45,6 +46,10 @@ app.get('/shortened/:id', async (req, res, next) => {
   res.redirect(`${url.address}`);
 });
 
+// Compress the response text
+app.use(compression());
+
+// Send back index.html
 app.get('/', (req, res, next) => {
   res.status(200).sendFile(path.join(__dirname), 'public/index.html');
 });

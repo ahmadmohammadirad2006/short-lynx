@@ -33,7 +33,6 @@ const clearInput = function (inp) {
 // Click on shortUrl button
 shortenUrlBtnEl.addEventListener('click', async function (e) {
   try {
-    console.log(longUrlInputEl.textContent.trim().length);
     if (longUrlInputEl.value.trim().length === 0)
       throw new Error('URL cannot be empty. Please provide a URL.');
     shortenUrlBtnEl.textContent = 'Processing...';
